@@ -26,20 +26,33 @@ def extract_error_component(log_entry_string):
              or if the component name pattern is not found.
              """
     log_pattern = re.compile(
-        r".* - (?P<log_level>WARNING|ERROR) - Component:\s*(?P<component>[^-\s]+) - Message:.*"
+        r".* - (?P<log_level>WARNING|ERROR) - Component:\s*(?P<component>.*?)\s*Message:.*"
     )
     match = log_pattern.search(log_entry_string)
     if match:
         return match.group('component')
     return None
 
-component_errors_counts = {}
-for log in application_errors:
-    component = extract_error_component(log)
-    if component:
-        if component not in component_errors_counts:
-            component_errors_counts[component] = 0
-        component_errors_counts[component] += 1
-print("Component Error Counts:")
-for component, count in component_errors_counts.items():
-    print(f"{component}: {count}")  
+def analyze_compenent_errors(logs):
+    """
+    Analyzes the logs and counts occurrences of each component in error logs.
+    
+    Args:
+        logs (list): List of log entry strings.
+    Returns:
+        dict: A dictionary with component names as keys and their error counts as values.
+    """
+    extracted_components = [
+        extract_error_component(log)
+        for log in logs
+        if extract_error_component(log) is not None
+    ]
+    component_counts = Counter(extracted_components)
+    return component_counts
+
+
+
+if __name__ == "__main__":
+    counts = analyze_compenent_errors(application_errors)
+    print("Component Error Counts:")
+    print(counts)
