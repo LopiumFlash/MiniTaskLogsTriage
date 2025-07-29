@@ -12,7 +12,6 @@ simple_logs = [
     "2025-07-29 10:00:40 - DEBUG - Detailed variable dump for debugging purposes."
 ]
 
-
 def extract_log_level(log_entry_string):
     """
     Extracts the log level from a log entry string.
