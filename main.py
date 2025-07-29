@@ -38,7 +38,6 @@ for log in simple_logs:
                 log_level_counts[log_level] += 1
             else:
                 log_level_counts[log_level] = 1
-    # Optionally, print invalid log entry format if needed
     else:
         print("Invalid log entry format.")
 
