@@ -36,10 +36,7 @@ for log in simple_logs:
     log_level = extract_log_level(log)
     if log_level:
         if log_level != 'DEBUG':
-            if log_level in log_level_counts:
-                log_level_counts[log_level] += 1
-            else:
-                log_level_counts[log_level] = 1
+            log_level_counts[log_level] = log_level_counts.get(log_level, 0) + 1
     else:
         print("Invalid log entry format.")
 
