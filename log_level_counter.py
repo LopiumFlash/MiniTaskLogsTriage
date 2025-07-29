@@ -1,4 +1,3 @@
-#main.py
 # This script processes a list of log entries and counts the occurrences of each log level,
 # excluding 'DEBUG' log entries. It prints the counts of each log level found in the logs.
 # It also includes a function to extract the log level from a log entry string.
