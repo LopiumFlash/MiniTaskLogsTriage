@@ -2,11 +2,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run main.py",
+            "label": "Run Log Level Counter",
             "type": "shell",
-            "command": "python main.py",
-            "group": "build",
-            "problemMatcher": []
+            "command": "python foundations/log_level_counter/log_level_counter.py",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always"
+            }
         }
     ]
 }
