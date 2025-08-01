@@ -2,11 +2,31 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run main.py",
+            "label": "Run Log Level Counter",
             "type": "shell",
-            "command": "python main.py",
+            "command": "python foundations/log_level_counter/log_level_counter.py",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Run Component Analyzer",
+            "type": "shell",
+            "command": "python foundations/component_analyzer/component_analyzer.py",
             "group": "build",
-            "problemMatcher": []
-        }
-    ]
-}
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Run Config Parser Validator",
+            "type": "shell",
+            "command": "python foundations/config_parser_validator/config_analyzer.py",
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            }

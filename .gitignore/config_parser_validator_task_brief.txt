@@ -1,0 +1,53 @@
+Mini-Task: Configuration File Parser & Validator
+
+Scenario:
+As a DSE, you need to inspect application configuration files to troubleshoot issues or ensure proper setup. These files are simple text files with key-value pairs. You'll write a script to read, parse, and validate these settings.
+
+1. Create a Simulated Configuration File:
+   - This file is named `app_config.ini` and its content is provided separately.
+   - You should place `app_config.ini` in the same directory as your Python script (`config_analyzer.py`).
+
+2. Parse Configuration File:
+   - Create a new Python file named `config_analyzer.py`.
+   - Inside `config_analyzer.py`, write a function `parse_config(file_path)`:
+     - It should take the `file_path` (e.g., `'app_config.ini'`) as an argument.
+     - It must open and read the file line by line.
+     - Ignore: Any empty lines and lines that start with a `#` (comments).
+     - Parse: For valid lines, split them at the first `=` to get the `KEY` and `VALUE`.
+     - Store: Store these `KEY` and `VALUE` pairs in a single Python dictionary. Make sure to `strip()` any leading/trailing whitespace from both the key and the value.
+     - Handle Errors: If a line does not contain an `=` sign, or contains multiple `=` signs (and you only want the first split), decide how your parser should handle it. For this task, simply **skip lines that don't contain exactly one `=` sign after stripping comments and whitespace.**
+     - Return: The populated configuration dictionary.
+
+3. Validate Critical Settings:
+   - Still in `config_analyzer.py`, write a function `validate_config(config_dict, required_settings)`:
+     - It should take the parsed `config_dict` and a `list` of `required_settings` (e.g., `['AppName', 'DBHost', 'APIPort', 'MaxConnections']`).
+     - Presence Check: Iterate through `required_settings` and check if each key is present in `config_dict`. Print an `ERROR` message for any missing required settings.
+     - Type Conversion & Error Handling:
+       - If `APIPort` is present, attempt to convert its value to an **integer**. If it fails (e.g., `APIPort=eighty`), print an `ERROR` message. Otherwise, print an `INFO` message that it's valid.
+       - If `TimeoutSeconds` is present, attempt to convert its value to an **integer**. Handle conversion errors similarly.
+       - If `Version` is present, attempt to convert its value to a **float**. Handle conversion errors similarly.
+       - Important: If a type conversion is successful, you should **update the value in the `config_dict` to the converted type** (e.g., `config_dict['APIPort']` should become `8080`, not `'8080'`).
+     - Return Value: Return `True` if all required settings are present and all specified type conversions are successful. Return `False` otherwise.
+
+Example Usage in `config_analyzer.py` (after defining your functions):
+
+```python
+if __name__ == "__main__":
+    config_file_path = 'app_config.ini'
+    required_app_settings = ['AppName', 'DBHost', 'APIPort', 'MaxConnections'] # MaxConnections is missing in the example .ini
+
+    print(f"Parsing config file: {config_file_path}")
+    app_config = parse_config(config_file_path)
+    print("Configuration loaded:")
+    print(app_config)
+
+    print("\nValidating configuration:")
+    is_valid = validate_config(app_config, required_app_settings)
+
+    if is_valid:
+        print("\nConfiguration validation PASSED.")
+    else:
+        print("\nConfiguration validation FAILED.")
+
+    print("\nFinal (validated) Configuration:")
+    print(app_config)

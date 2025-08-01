@@ -1,0 +1,9 @@
+# This is a comment line
+Line 1: Application started.
+Line 2: Processing request.
+
+# Another comment
+Line 3: User logged in.
+
+
+Line 4: Task completed.

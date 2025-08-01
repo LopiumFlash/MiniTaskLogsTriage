@@ -1,31 +1,37 @@
-# MiniTaskLogsTriage
+# DSEPythonEssentials
 
-This project is a simple Python script that processes a list of log entries, extracts the log level from each entry, and counts the number of entries for each log level (INFO, WARNING, ERROR, CRITICAL).
+This repository contains foundational Python mini-projects for Data Science Engineering (DSE) essentials. Each mini-project is organized in its own subdirectory under `foundations/`.
 
 ## How to Use
-1. Place your log entries in the script or load them from a file.
-2. Run the script using your Python environment.
-3. The script will output the count of each log level found in the entries.
+
+1. Navigate to the desired mini-project directory under `foundations/`.
+2. Follow the instructions in the respective `README.md` file.
+3. Run the scripts using Python 3.7 or higher.
 
 ## Requirements
+
 - Python 3.7 or higher
 
 ## Project Structure
-- `main.py`: Main script for log processing.
+
+- `foundations/`: Core DSE foundational tasks/mini-projects
+  - `log_level_counter/`: Log Level Identifier & Counter
+    - `log_level_counter.py`
+    - `README.md`
+  - `component_analyzer/`: Component Error Analysis
+    - `component_analyzer.py`
+    - `README.md`
+  - `config_parser_validator/`: Config File Parser & Validator
+    - `config_analyzer.py`
+    - `app_config.ini`
+    - `README.md`
+- `scripts/`: General utility scripts
+  - `network_health_check.py`
+  - `db_backup_tool.py`
+- `docs/`: Additional documentation
+  - `troubleshooting_guide.md`
 - `.github/copilot-instructions.md`: Copilot custom instructions.
-
-## Example
-```
-INFO: System started
-WARNING: Low disk space
-ERROR: Failed to load module
-CRITICAL: System crash
-```
-
-## Output
-```
-INFO: 1
-WARNING: 1
-ERROR: 1
-CRITICAL: 1
-```
+- `.vscode/`: Visual Studio Code settings
+  - `settings.json`
+  - `tasks.json`
+- `.gitignore`: Git ignore
