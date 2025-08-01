@@ -1,0 +1,11 @@
+2025-08-01 02:14:58 - INFO - [UserAuthService] - Request received for player '123456'.
+2025-08-01 02:14:59 - SUCCESS - [PaymentGatewayService] - Transaction 'txn_A72B3C' completed for PlayerID:123456.
+2025-08-01 02:15:00 - FAILED - [PaymentGatewayService] - Transaction 'txn_D4E5F6' failed. Reason: {"error_code": "TRANSACTION_INVALID", "message": "Player ID cannot be null."}
+2025-08-01 02:15:01 - INFO - [TransactionService] - Initiating transaction of type 'Deposit' for txn_D4E5F6.
+2025-08-01 02:15:02 - FAILED - [PaymentGatewayService] - Transaction 'txn_G8H9I0' failed. Reason: {"error_code": "TRANSACTION_INVALID", "message": "Player ID cannot be null."}
+2025-08-01 02:15:03 - INFO - [TransactionService] - Initiating transaction of type 'Withdrawal' for txn_G8H9I0.
+2025-08-01 02:15:04 - SUCCESS - [PaymentGatewayService] - Transaction 'txn_J1K2L3' completed for PlayerID:789012.
+2025-08-01 02:15:05 - FAILED - [PaymentGatewayService] - Transaction 'txn_M4N5O6' failed. Reason: {"error_code": "TRANSACTION_INVALID", "message": "Player ID cannot be null."}
+2025-08-01 02:15:06 - FAILED - [PaymentGatewayService] - Transaction 'txn_P7Q8R9' failed. Reason: {"error_code": "INVALID_TRANSACTION_TYPE", "message": "Unsupported type."}
+2025-08-01 02:15:07 - INFO - [TransactionService] - Initiating transaction of type 'Deposit' for txn_M4N5O6.
+2025-08-01 02:15:08 - INFO - [TransactionService] - Initiating transaction of type 'BonusRedemption' for txn_P7Q8R9.
