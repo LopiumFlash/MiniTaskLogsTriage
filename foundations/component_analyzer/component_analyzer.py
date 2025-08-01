@@ -1,18 +1,6 @@
 import re
 from collections import Counter
 
-application_errors = [
-    "2025-07-29 11:00:01 - ERROR - Component: UserAuth - Message: Failed to authenticate user 'john.doe'.",
-    "2025-07-29 11:00:05 - ERROR - Component: DatabaseService - Message: Connection pool exhausted.",
-    "2025-07-29 11:00:10 - WARNING - Component: ReportingEngine - Message: Report generation took longer than 5 seconds.",
-    "2025-07-29 11:00:15 - ERROR - Component: UserAuth - Message: Invalid token provided for session.",
-    "2025-07-29 11:00:20 - ERROR - Component: PaymentGateway - Message: Third-party API timeout.",
-    "2025-07-29 11:00:25 - INFO - Component: UserAuth - Message: User 'jane.smith' logged in.", # Not an error
-    "2025-07-29 11:00:30 - ERROR - Component: DatabaseService - Message: Query execution failed for 'orders' table.",
-    "2025-07-29 11:00:35 - ERROR - Component: PaymentGateway - Message: Payment processing failed due to insufficient funds.",
-    "2025-07-29 11:00:40 - DEBUG - Component: MonitoringAgent - Message: Collecting system metrics." # Not an error
-]
-
 def extract_error_component(log_entry_string):
     """
     Extracts the component name from an error log entry string using regex,
@@ -33,26 +21,33 @@ def extract_error_component(log_entry_string):
         return match.group('component')
     return None
 
-def analyze_compenent_errors(logs):
+def analyze_compenent_errors(file_path):
     """
     Analyzes the logs and counts occurrences of each component in error logs.
     
     Args:
-        logs (list): List of log entry strings.
+        file_path (str): The path to the logs file.
     Returns:
         dict: A dictionary with component names as keys and their error counts as values.
     """
-    extracted_components = [
-        extract_error_component(log)
-        for log in logs
-        if extract_error_component(log) is not None
-    ]
-    component_counts = Counter(extracted_components)
-    return component_counts
-
-
+    #
+    extracted_components = []
+    try:
+        with open(file_path, 'r') as file:
+            for line in file:
+                cleaned_line = line.strip()
+                component = extract_error_component(line)
+                if component:
+                    extracted_components.append(component)
+            return collections.Counter(extracted_components)
+    except FileNotFoundError:
+        print(f"Error: The file {file_path} does not exist.")
+        return {}
+    except Exception as e:
+        print(f"An error occurred while reading the file: {e}")
+        return {}
 
 if __name__ == "__main__":
-    counts = analyze_compenent_errors(application_errors)
+    counts = analyze_compenent_errors(r'C:\Users\matth\PythonProjects\DSEPythonEssentials\foundations\component_analyzer\sample_logs.txt')
     print("Component Error Counts:")
     print(counts)

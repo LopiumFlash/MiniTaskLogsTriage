@@ -37,4 +37,4 @@ password = pass
 
 ## Customization
 
-Modify `config_analyzer.py` to add or change validation rules as
+Modify `config_analyzer.py` to add or change validation rules as needed

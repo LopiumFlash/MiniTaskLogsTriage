@@ -1,6 +1,5 @@
 import json
 
-
 def triage_logs(log_file_path):
     """
     Triage logs from a specified file to identify and categorize incidents.
@@ -12,40 +11,36 @@ def triage_logs(log_file_path):
         list: A list of dictionaries, each representing an incident with its details.
     """
     failed_transactions_master = []
+    transaction_info = {}
     try:
         with open(log_file_path, 'r') as file:
             for line in file:
                 cleaned_line = line.strip()
                 if cleaned_line and not cleaned_line.startswith('#'):
-                    for line in cleaned_line:
-                        transaction_info = {}
-                        if 'INFO' in line:
-                            if 'Transaction' in line:
-                                transaction_id = line.split("'")[1].split("'")[0]
-                                transaction_type = line.split("'")[2].split("'")[0]
-                                transaction_info = {
-                                    'transaction_id': transaction_id,
-                                    'transaction_type': transaction_type
-                                }
-                    failed_transactions = [line for line in cleaned_line if 'FAILED' in line]
-                    for transaction in failed_transactions:
-                        failed_transaction_id = transaction.split("'")[1].split("'")[0]
-                        failure_reason_json = transaction.split(": ")[1]
+                    if 'INFO' in line:
+                        if 'Transaction' in line:
+                            transaction_id = line.split("'")[1].split("'")[0]
+                            transaction_type = line.split("'")[2].split("'")[0]
+                            transaction_info = {
+                                'transaction_id': transaction_id,
+                                'transaction_type': transaction_type
+                            }
+                    elif 'FAILED' in line:
+                        failed_transaction_id = cleaned_line.split("'")[1].split("'")[0]
+                        failure_reason_json = cleaned_line.split(": ")[1]
                         failure_reason = json.loads(failure_reason_json)
                         error_code = failure_reason['error_code']
                         if transaction_info['transaction_id'] == failed_transaction_id:
                             failure_reason['transaction_type'] = transaction_info['transaction_type']
                             failed_transactions_master.append(failure_reason)
                         else:
-                            continue
-                    
+                            continue               
     except FileNotFoundError:
         print(f"Error: The log file {log_file_path} does not exist.")
         return []
     except json.JSONDecodeError:
         print(f"Error: Failed to decode JSON in the log file {log_file_path}.")
         return []
-    return print(failed_transactions_master)
-## THIS IS RETURNING AN EMPTY LIST WITH NO ERRORS, NEEDS TO BE FIXED
+    return failed_transactions_master
 
 triage_logs(r'C:\Users\matth\PythonProjects\DSEPythonEssentials\foundations\incident_triage\incident_logs.txt')

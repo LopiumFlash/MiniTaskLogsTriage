@@ -24,4 +24,4 @@ This mini-project provides practice with Python file input and output (I/O) oper
 
 ## Customization
 
-Feel free to add your own file I/O exercises or extend the examples to cover more advanced scenarios, such as working with binary files
+Feel free to add your own file I/O exercises or extend the examples to cover more advanced scenarios, such as working with binary files or large
