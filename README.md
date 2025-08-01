@@ -34,4 +34,4 @@ This repository contains foundational Python mini-projects for Data Science Engi
 - `.vscode/`: Visual Studio Code settings
   - `settings.json`
   - `tasks.json`
-- `.gitignore`: Git ignore file
+- `.gitignore`: Git ignore

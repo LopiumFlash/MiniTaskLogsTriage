@@ -12,6 +12,21 @@
             "presentation": {
                 "reveal": "always"
             }
-        }
-    ]
-}
+        },
+        {
+            "label": "Run Component Analyzer",
+            "type": "shell",
+            "command": "python foundations/component_analyzer/component_analyzer.py",
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Run Config Parser Validator",
+            "type": "shell",
+            "command": "python foundations/config_parser_validator/config_analyzer.py",
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            }
